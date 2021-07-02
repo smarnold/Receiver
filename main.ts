@@ -7,7 +7,7 @@ radio.onReceivedValue(function (name, value) {
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorLeft, Kitronik_Move_Motor.MotorDirection.Reverse, Math.abs(value))
         }
     } else if (name == "RMotor") {
-        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, Math.abs(value))
+        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, value)
         if (value >= 0) {
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorRight, Kitronik_Move_Motor.MotorDirection.Forward, value)
         } else {
@@ -21,6 +21,3 @@ radio.onReceivedValue(function (name, value) {
 })
 basic.showString("R")
 radio.setGroup(1)
-basic.forever(function () {
-	
-})
