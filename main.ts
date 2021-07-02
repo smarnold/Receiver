@@ -13,6 +13,8 @@ radio.onReceivedValue(function (name, value) {
         } else {
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorRight, Kitronik_Move_Motor.MotorDirection.Reverse, Math.abs(value))
         }
+    } else if (name == "Obstacle") {
+    	
     } else {
         Kitronik_Move_Motor.stop()
     }
