@@ -16,15 +16,12 @@ radio.onReceivedValue(function (name, value) {
         basic.showString("" + (distance))
         if (distance >= 20) {
             Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 50)
-        } else if (distance < 20 && distance > 5) {
+        } else {
             basic.pause(500)
             Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 50)
             basic.pause(1000)
             Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 50)
             basic.pause(500)
-        } else {
-            basic.showString("?")
-            Kitronik_Move_Motor.stop()
         }
     } else {
         basic.showString("R")
