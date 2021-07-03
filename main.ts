@@ -14,6 +14,7 @@ radio.onReceivedValue(function (name, value) {
     } else if (name == "Obstacle") {
         Kitronik_Move_Motor.setUltrasonicUnits(Kitronik_Move_Motor.Units.Centimeters)
         distance = Kitronik_Move_Motor.measure()
+        basic.showString("" + (distance))
         if (distance >= 20) {
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorLeft, Kitronik_Move_Motor.MotorDirection.Forward, value)
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorRight, Kitronik_Move_Motor.MotorDirection.Reverse, value)
