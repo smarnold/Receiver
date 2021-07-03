@@ -15,12 +15,12 @@ radio.onReceivedValue(function (name, value) {
         distance = Kitronik_Move_Motor.measure()
         basic.showString("" + (distance))
         if (distance >= 20) {
-            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 50)
+            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
         } else {
             basic.pause(500)
-            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 50)
+            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 10)
             basic.pause(1000)
-            Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 50)
+            Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 10)
             basic.pause(500)
         }
     } else {
