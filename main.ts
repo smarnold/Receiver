@@ -14,14 +14,16 @@ radio.onReceivedValue(function (name, value) {
     } else if (name == "Obstacle") {
         distance = Kitronik_Move_Motor.measure()
         basic.showString("" + (distance))
-        if (distance >= 20) {
+        if (distance >= 10) {
             Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
-        } else {
-            basic.pause(500)
+        } else if (distance < 10 && distance >= 5) {
             Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 10)
             basic.pause(1000)
             Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 10)
             basic.pause(500)
+        } else {
+            basic.showString("?")
+            Kitronik_Move_Motor.stop()
         }
     } else {
         basic.showString("R")
