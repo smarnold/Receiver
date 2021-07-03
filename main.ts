@@ -12,7 +12,6 @@ radio.onReceivedValue(function (name, value) {
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorRight, Kitronik_Move_Motor.MotorDirection.Reverse, Math.abs(value))
         }
     } else if (name == "Obstacle") {
-        basic.showString("O")
         Kitronik_Move_Motor.setUltrasonicUnits(Kitronik_Move_Motor.Units.Centimeters)
         distance = Kitronik_Move_Motor.measure()
         basic.showString("" + (distance))
@@ -27,7 +26,7 @@ radio.onReceivedValue(function (name, value) {
             Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 50)
             basic.pause(500)
         } else {
-            basic.showString("R")
+            basic.showString("?")
             Kitronik_Move_Motor.stop()
         }
     } else {
