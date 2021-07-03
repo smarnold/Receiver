@@ -32,5 +32,5 @@ radio.onReceivedValue(function (name, value) {
     }
 })
 let distance = 0
-basic.showString("R")
 radio.setGroup(1)
+basic.showString("R")
