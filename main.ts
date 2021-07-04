@@ -13,24 +13,25 @@ radio.onReceivedValue(function (name, value) {
         }
     } else if (name == "Obstacle") {
         distance = Kitronik_Move_Motor.measure()
-        basic.showString("" + (distance))
-        if (distance >= 10) {
-            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
-        } else if (distance < 10 && distance >= 5) {
-            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 10)
+        if (distance >= 20) {
+            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 50)
+        } else if (distance < 20 && distance >= 5) {
+            Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 20)
             basic.pause(1000)
-            Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 10)
+            Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 20)
             basic.pause(500)
         } else {
-            basic.showString("?")
             Kitronik_Move_Motor.stop()
+            basic.showString("?")
         }
     } else {
-        basic.showString("R")
         Kitronik_Move_Motor.stop()
+        basic.showString("R")
     }
 })
 let distance = 0
 radio.setGroup(1)
 basic.showString("R")
 Kitronik_Move_Motor.setUltrasonicUnits(Kitronik_Move_Motor.Units.Centimeters)
+distance = Kitronik_Move_Motor.measure()
+basic.showString("" + (distance))
