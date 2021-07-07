@@ -38,6 +38,13 @@ radio.onReceivedValue(function (name, value) {
             Kitronik_Move_Motor.motorOn(Kitronik_Move_Motor.Motors.MotorRight, Kitronik_Move_Motor.MotorDirection.Reverse, Math.abs(value))
         }
     } else if (name == "Obstacle") {
+        Kitronik_Move_Motor.soundSiren(Kitronik_Move_Motor.OnOffSelection.On)
+        moveMotorZIP.setZipLedColor(0, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
+        moveMotorZIP.setZipLedColor(1, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Blue))
+        moveMotorZIP.setZipLedColor(2, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
+        moveMotorZIP.setZipLedColor(3, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Blue))
+        moveMotorZIP.show()
+        basic.pause(1000)
         distance = Kitronik_Move_Motor.measure()
         if (distance >= 20) {
             Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 50)
@@ -50,6 +57,10 @@ radio.onReceivedValue(function (name, value) {
             Kitronik_Move_Motor.stop()
             basic.showString("?")
         }
+        for (let index = 0; index < 30; index++) {
+            moveMotorZIP.rotate(1)
+            moveMotorZIP.show()
+        }
     } else {
         Kitronik_Move_Motor.stop()
         basic.showString("R")
@@ -58,14 +69,14 @@ radio.onReceivedValue(function (name, value) {
 let indicating = false
 let distance = 0
 let moveMotorZIP: Kitronik_Move_Motor.MoveMotorZIP = null
+let police = false
 moveMotorZIP = Kitronik_Move_Motor.createMoveMotorZIPLED(4)
+let headlights = moveMotorZIP.range(0, 2)
+let rearlights = moveMotorZIP.range(2, 2)
 radio.setGroup(1)
 basic.showString("R")
 Kitronik_Move_Motor.setUltrasonicUnits(Kitronik_Move_Motor.Units.Centimeters)
 distance = Kitronik_Move_Motor.measure()
-basic.showString("" + (distance))
-let headlights = moveMotorZIP.range(0, 2)
-let rearlights = moveMotorZIP.range(2, 2)
 basic.forever(function () {
     if (input.lightLevel() < 200) {
         headlights.showColor(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.White))
